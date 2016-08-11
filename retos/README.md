@@ -1,4 +1,4 @@
-# retos de la asignatura:
+# Lista de retos de la asignatura:
 
 * Reto 0: Hola Mundo en Android Studio
 * Reto 1: Propuesta proyecto
