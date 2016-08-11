@@ -1,2 +1,3 @@
-# movilesUnal2016-3
-retos, proyectos y tareas de la asignatura
+# moviles Unal 2016 - 2
+
+retos, proyectos y tareas de la asignatura "Desarrollo de aplicaciones para dispositivos móviles"
