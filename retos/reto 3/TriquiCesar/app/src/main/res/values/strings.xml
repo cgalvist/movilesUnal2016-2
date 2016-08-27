@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">TriquiCesar</string>
-    <string name="first_human">You go first.</string>
-    <string name="turn_human">Your turn.</string>
-    <string name="turn_computer">Android\'s turn.</string>
-    <string name="result_tie">It\'s a tie.</string>
-    <string name="result_human_wins">You won!</string>
-    <string name="result_computer_wins">Android won!</string>
+    <string name="new_game">Nuevo juego.</string>
+    <string name="first_human">Tu vas primero.</string>
+    <string name="turn_human">Tu turno.</string>
+    <string name="turn_computer">Turno de Android.</string>
+    <string name="result_tie">Esto es un empate.</string>
+    <string name="result_human_wins">Tu ganas!</string>
+    <string name="result_computer_wins">Android gana!</string>
 </resources>

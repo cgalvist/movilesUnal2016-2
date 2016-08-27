@@ -55,13 +55,13 @@ public class MainActivityTriqui extends AppCompatActivity {
         }
 
         // Human goes first
-        mInfoTextView.setText("You go first.");
+        mInfoTextView.setText(R.string.first_human);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        menu.add("New Game");
+        menu.add(R.string.new_game);
         return true;
     }
 
