@@ -16,4 +16,5 @@
     <string name="quit_question">¿estás seguro de salir?</string>
     <string name="yes">Si</string>
     <string name="no">No</string>
+    <string name="about">Acerca de</string>
 </resources>

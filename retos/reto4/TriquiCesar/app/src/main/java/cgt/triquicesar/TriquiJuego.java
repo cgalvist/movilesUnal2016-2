@@ -21,16 +21,16 @@ public class TriquiJuego {
     private Random mRand;
 
     // The computer's difficulty levels
-    public enum DifficultyLevel {Easy, Harder, Expert};
+    public static enum DifficultyLevel {Easy, Harder, Expert};
 
     // Current difficulty level
-    private DifficultyLevel mDifficultyLevel = DifficultyLevel.Expert;
+    private static DifficultyLevel mDifficultyLevel = DifficultyLevel.Expert;
 
-    public DifficultyLevel getDifficultyLevel() {
+    public static DifficultyLevel getDifficultyLevel() {
         return mDifficultyLevel;
     }
 
-    public void setDifficultyLevel(DifficultyLevel difficultyLevel) {
+    public static void setDifficultyLevel(DifficultyLevel difficultyLevel) {
         mDifficultyLevel = difficultyLevel;
     }
 

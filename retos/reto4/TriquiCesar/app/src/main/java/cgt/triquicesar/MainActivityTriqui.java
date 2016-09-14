@@ -1,11 +1,13 @@
 package cgt.triquicesar;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -26,6 +28,7 @@ public class MainActivityTriqui extends AppCompatActivity {
 
     static final int DIALOG_DIFFICULTY_ID = 0;
     static final int DIALOG_QUIT_ID = 1;
+    static final int DIALOG_ABOUT = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +80,7 @@ public class MainActivityTriqui extends AppCompatActivity {
         return true;
     }
 
+    // acciones para el menu principal de la aplicacion
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         //startNewGame();
@@ -88,6 +92,9 @@ public class MainActivityTriqui extends AppCompatActivity {
                 return true;
             case R.id.ai_difficulty:
                 showDialog(DIALOG_DIFFICULTY_ID);
+                return true;
+            case R.id.ai_about:
+                showDialog(DIALOG_ABOUT);
                 return true;
             case R.id.quit:
                 showDialog(DIALOG_QUIT_ID);
@@ -112,6 +119,14 @@ public class MainActivityTriqui extends AppCompatActivity {
         Dialog dialog = null;
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
+        Context context = getApplicationContext();
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
+        View layout = inflater.inflate(R.layout.about_dialog, null);
+        //builder.setView(layout);
+        //builder.setPositiveButton("OK", null);
+        //Dialog dialog = builder.create();
+
+
         switch(id) {
             case DIALOG_DIFFICULTY_ID:
 
@@ -122,23 +137,51 @@ public class MainActivityTriqui extends AppCompatActivity {
                         getResources().getString(R.string.difficulty_harder),
                         getResources().getString(R.string.difficulty_expert)};
 
-                int selected = 0;
+                int selected = 2;
 
-                // TODO: Set selected, an integer (0 to n-1), for the Difficulty dialog.
                 // selected is the radio button that should be selected.
+
+                TriquiJuego.DifficultyLevel dificultadActual = TriquiJuego.getDifficultyLevel();
+
+                if(dificultadActual == TriquiJuego.DifficultyLevel.Easy){
+                    selected = 0;
+                }
+                if(dificultadActual == TriquiJuego.DifficultyLevel.Harder){
+                    selected = 1;
+                }
+                if(dificultadActual == TriquiJuego.DifficultyLevel.Expert){
+                    selected = 2;
+                }
 
                 builder.setSingleChoiceItems(levels, selected,
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int item) {
                                 dialog.dismiss();   // Close dialog
 
-                                // TODO: Set the diff level of mGame based on which item was selected.
-
                                 // Display the selected difficulty level
+                                switch(item){
+                                    case 0:
+                                        TriquiJuego.setDifficultyLevel(TriquiJuego.DifficultyLevel.Easy);
+                                        break;
+                                    case 1:
+                                        TriquiJuego.setDifficultyLevel(TriquiJuego.DifficultyLevel.Harder);
+                                        break;
+                                    case 2:
+                                        TriquiJuego.setDifficultyLevel(TriquiJuego.DifficultyLevel.Expert);
+                                        break;
+                                }
+
                                 Toast.makeText(getApplicationContext(), levels[item],
                                         Toast.LENGTH_SHORT).show();
                             }
                         });
+                dialog = builder.create();
+
+                break;
+            case DIALOG_ABOUT:
+
+                builder.setView(layout);
+                builder.setPositiveButton("OK", null);
                 dialog = builder.create();
 
                 break;
