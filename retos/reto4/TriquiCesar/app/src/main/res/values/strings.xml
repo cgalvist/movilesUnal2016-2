@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string name="app_name">TriquiCesar</string>
+    <string name="new_game">Nuevo juego.</string>
+    <string name="first_human">Tú vas primero.</string>
+    <string name="turn_human">Tú turno.</string>
+    <string name="turn_computer">Turno de Android.</string>
+    <string name="result_tie">Empate.</string>
+    <string name="result_human_wins">¡Tu ganas!</string>
+    <string name="result_computer_wins">¡Android gana!</string>
+
+    <string name="difficulty_choose">Selecciona un nivel de dificultad:</string>
+    <string name="difficulty_easy">Fácil</string>
+    <string name="difficulty_harder">Difícil</string>
+    <string name="difficulty_expert">Experto</string>
+    <string name="quit_question">¿estás seguro de salir?</string>
+    <string name="yes">Si</string>
+    <string name="no">No</string>
+</resources>
