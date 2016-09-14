@@ -126,6 +126,8 @@ public class MainActivityTriqui extends AppCompatActivity {
         //builder.setPositiveButton("OK", null);
         //Dialog dialog = builder.create();
 
+        int selected = 2;
+        //TriquiJuego.DifficultyLevel dificultadActual;
 
         switch(id) {
             case DIALOG_DIFFICULTY_ID:
@@ -137,21 +139,23 @@ public class MainActivityTriqui extends AppCompatActivity {
                         getResources().getString(R.string.difficulty_harder),
                         getResources().getString(R.string.difficulty_expert)};
 
-                int selected = 2;
-
                 // selected is the radio button that should be selected.
 
-                TriquiJuego.DifficultyLevel dificultadActual = TriquiJuego.getDifficultyLevel();
+                /*selected = 2;
 
-                if(dificultadActual == TriquiJuego.DifficultyLevel.Easy){
+                dificultadActual = TriquiJuego.getDifficultyLevel();
+
+                System.out.println("!!!!!!!!!!!!!!!!!!!! diff: " + dificultadActual);
+
+                if(dificultadActual.equals(TriquiJuego.DifficultyLevel.Easy)){
                     selected = 0;
                 }
-                if(dificultadActual == TriquiJuego.DifficultyLevel.Harder){
+                if(dificultadActual.equals(TriquiJuego.DifficultyLevel.Harder)){
                     selected = 1;
                 }
-                if(dificultadActual == TriquiJuego.DifficultyLevel.Expert){
+                if(dificultadActual.equals(TriquiJuego.DifficultyLevel.Expert)){
                     selected = 2;
-                }
+                }*/
 
                 builder.setSingleChoiceItems(levels, selected,
                         new DialogInterface.OnClickListener() {
