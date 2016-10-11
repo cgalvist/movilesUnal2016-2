@@ -25,7 +25,7 @@ public class MainActivityTriqui extends AppCompatActivity {
 
     // Represents the internal state of the game
     private TriquiJuego mJuego;
-    private boolean mJuegoOver = false;
+    private boolean mGameOver = false;
 
     private int mHumanWins = 0;
     private int mComputerWins = 0;
@@ -100,7 +100,7 @@ public class MainActivityTriqui extends AppCompatActivity {
         } else {
             // Restore the game's state
             mJuego.setBoardState(savedInstanceState.getCharArray("board"));
-            mJuegoOver = savedInstanceState.getBoolean("mJuegoOver");
+            mGameOver = savedInstanceState.getBoolean("mGameOver");
             mInfoTextView.setText(savedInstanceState.getCharSequence("info"));
             mHumanWins = savedInstanceState.getInt("mHumanWins");
             mComputerWins = savedInstanceState.getInt("mComputerWins");
@@ -109,7 +109,7 @@ public class MainActivityTriqui extends AppCompatActivity {
 
 
             endGame(mJuego.checkForWinner());
-            if(!mJuegoOver) {
+            if(!mGameOver) {
                 mInfoTextView.setText(mGoFirst == TriquiJuego.COMPUTER_PLAYER? R.string.turn_computer:R.string.turn_human);
                 mBoardView.invalidate();
             }
@@ -124,7 +124,7 @@ public class MainActivityTriqui extends AppCompatActivity {
         super.onSaveInstanceState(outState);
 
         outState.putCharArray("board", mJuego.getBoardState());
-        outState.putBoolean("mJuegoOver", mJuegoOver);
+        outState.putBoolean("mGameOver", mGameOver);
         outState.putInt("mHumanWins", Integer.valueOf(mHumanWins));
         outState.putInt("mComputerWins", Integer.valueOf(mComputerWins));
         outState.putInt("mTies", Integer.valueOf(mTies));
@@ -136,7 +136,7 @@ public class MainActivityTriqui extends AppCompatActivity {
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         mJuego.setBoardState(savedInstanceState.getCharArray("board"));
-        mJuegoOver = savedInstanceState.getBoolean("mJuegoOver");
+        mGameOver = savedInstanceState.getBoolean("mGameOver");
         mInfoTextView.setText(savedInstanceState.getCharSequence("info"));
         mHumanWins = savedInstanceState.getInt("mHumanWins");
         mComputerWins = savedInstanceState.getInt("mComputerWins");
@@ -149,7 +149,7 @@ public class MainActivityTriqui extends AppCompatActivity {
 
         mJuego.clearBoard();
         mBoardView.invalidate(); // Redraw the board
-        mJuegoOver = false;
+        mGameOver = false;
         // Human goes first
         mInfoTextView.setText(R.string.first_human);
     }
@@ -270,7 +270,7 @@ public class MainActivityTriqui extends AppCompatActivity {
                 mComputerScoreTextView.setText(Integer.toString(mComputerWins));
                 break;
         }
-        mJuegoOver = true;
+        mGameOver = true;
     }
 
     private void turnComputer() {
@@ -434,10 +434,7 @@ public class MainActivityTriqui extends AppCompatActivity {
             int row = (int) event.getY() / mBoardView.getBoardCellHeight();
             int pos = row * 3 + col;
 
-            if (!mJuegoOver && setMove(TriquiJuego.HUMAN_PLAYER, pos)) {
-
-                // If no winner yet, let the computer make a move
-                //mHumanMediaPlayer.start();    // Play the sound effect
+            if (!mGameOver && setMove(TriquiJuego.HUMAN_PLAYER, pos)) {
                 mGoFirst = mGoFirst == TriquiJuego.HUMAN_PLAYER? TriquiJuego.COMPUTER_PLAYER:TriquiJuego.HUMAN_PLAYER;
                 try {
                     mHumanMediaPlayer.start(); // Play the sound effect
@@ -445,34 +442,11 @@ public class MainActivityTriqui extends AppCompatActivity {
 
                 }
                 int winner = mJuego.checkForWinner();
-
                 if (winner == 0) {
                     mInfoTextView.setText(R.string.turn_computer);
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        public void run() {
-                            int move = mJuego.getComputerMove();
-                            setMove(TriquiJuego.COMPUTER_PLAYER, move);
-                            mBoardView.invalidate();
-                            mComputerMediaPlayer.start();    // Play the sound effect
-                            int winner = mJuego.checkForWinner();
-                            if (winner == 0) {
-                                mInfoTextView.setText(R.string.turn_computer);
-                                turnComputer();
-                            } else
-                                endGame(winner);
-                        }
-                    }, 1000);
-
-                } else {
-                    if (winner == 1)
-                        mInfoTextView.setText(R.string.result_tie);
-                    else if (winner == 2)
-                        mInfoTextView.setText(R.string.result_human_wins);
-                    else
-                        mInfoTextView.setText(R.string.result_computer_wins);
-                    mJuegoOver = true;
-                }
+                    turnComputer();
+                } else
+                    endGame(winner);
             }
 
             // So we aren't notified of continued events when finger is moved
