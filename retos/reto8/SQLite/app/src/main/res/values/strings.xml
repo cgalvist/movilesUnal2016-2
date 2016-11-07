@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Reto 8 - SQLite</string>
+    <string name="date_picker_title">Fecha h</string>
+    <string name="new_employee">Nuevo contacto</string>
+    <string name="choose_menu">Reto 8 - Desarrollo de Aplicaciones para Dispositivos Móviles</string>
+    <string name="view_all_employees">Ver contactos</string>
+    <string name="remove_employee">Eliminar contacto</string>
+    <string name="update_employee">Actualizar contacto</string>
+    <string name="add_employee">Agregar contacto</string>
+    <string name="add_first_name">Nombre</string>
+    <string name="add_url">Url</string>
+    <string name="add_phone">Teléfono</string>
+    <string name="add_email">Email</string>
+    <string name="add_pas">Productos y Servicios</string>
+    <string name="add_dept">Departamento</string>
+    <string name="enter_employee_id">Ingrese el id del contacto</string>
+    <string name="settings">Configuración</string>
+</resources>
