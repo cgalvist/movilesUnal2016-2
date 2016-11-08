@@ -28,7 +28,7 @@ public class ContactoDBHandler extends SQLiteOpenHelper {
                     COLUMN_PHONE + " NUMERIC, " +
                     COLUMN_EMAIL + " TEXT, " +
                     COLUMN_PAS + " TEXT, " +
-                    COLUMN_DEPT + " TEXT " +
+                    COLUMN_DEPT + " NUMERIC " +
                     ")";
 
 

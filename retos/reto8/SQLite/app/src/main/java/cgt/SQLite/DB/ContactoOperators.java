@@ -67,7 +67,7 @@ public class ContactoOperators {
         if (cursor != null)
             cursor.moveToFirst();
 
-        Contacto e = new Contacto(Long.parseLong(cursor.getString(0)),cursor.getString(1), cursor.getString(2), Integer.parseInt(cursor.getString(3)), cursor.getString(4), cursor.getString(5), cursor.getString(6));
+        Contacto e = new Contacto(Long.parseLong(cursor.getString(0)),cursor.getString(1), cursor.getString(2), Integer.parseInt(cursor.getString(3)), cursor.getString(4), cursor.getString(5), Integer.parseInt(cursor.getString(6)));
         // return Contacto
         return e;
     }
@@ -86,7 +86,7 @@ public class ContactoOperators {
                 Contacto.setTelefono(cursor.getInt(cursor.getColumnIndex(ContactoDBHandler.COLUMN_PHONE)));
                 Contacto.setEmail(cursor.getString(cursor.getColumnIndex(ContactoDBHandler.COLUMN_EMAIL)));
                 Contacto.setProductosYServicios(cursor.getString(cursor.getColumnIndex(ContactoDBHandler.COLUMN_PAS)));
-                Contacto.setDepartamento(cursor.getString(cursor.getColumnIndex(ContactoDBHandler.COLUMN_DEPT)));
+                Contacto.setDepartamento(cursor.getInt(cursor.getColumnIndex(ContactoDBHandler.COLUMN_DEPT)));
                 empresas.add(Contacto);
             }
         }

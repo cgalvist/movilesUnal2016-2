@@ -8,9 +8,9 @@ public class Contacto {
     private int telefono;
     private String email;
     private String productosYServicios;
-    private String departamento;
+    private int departamento;
 
-    public Contacto(long id, String nombre, String url, int telefono, String email, String productosYServicios, String departamento){
+    public Contacto(long id, String nombre, String url, int telefono, String email, String productosYServicios, int departamento){
         this.id = id;
         this.nombre = nombre;
         this.url = url;
@@ -41,11 +41,11 @@ public class Contacto {
         this.nombre = nombre;
     }
 
-    public String getDepartamento() {
+    public int getDepartamento() {
         return departamento;
     }
 
-    public void setDepartamento(String departamento) {
+    public void setDepartamento(int departamento) {
         this.departamento = departamento;
     }
 

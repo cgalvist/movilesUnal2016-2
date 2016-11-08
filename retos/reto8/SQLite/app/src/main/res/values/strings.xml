@@ -15,4 +15,10 @@
     <string name="add_dept">Departamento</string>
     <string name="enter_employee_id">Ingrese el id del contacto</string>
     <string name="settings">Configuración</string>
+    <string-array name="contact_type">
+        <item>Consultoría</item>
+        <item>Desarrollo a la medida</item>
+        <item>Fábrica de software</item>
+    </string-array>
+
 </resources>

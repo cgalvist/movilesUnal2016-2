@@ -18,7 +18,8 @@
         android:layout_height="wrap_content"
         android:hint="@string/add_url"
         android:padding="@dimen/view_padding"
-        android:textSize="@dimen/add_edit_textsize"/>
+        android:textSize="@dimen/add_edit_textsize"
+        android:inputType="textUri" />
 
     <EditText
         android:id="@+id/edit_text_phone"
@@ -45,12 +46,27 @@
         android:hint="@string/add_pas"
         android:padding="@dimen/view_padding"
         android:textSize="@dimen/add_edit_textsize"/>
-    <EditText
-        android:id="@+id/edit_text_dept"
-        android:layout_width="match_parent"
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/add_dept"
-        />
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/view_padding">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_dept"
+            android:textSize="@dimen/add_edit_textsize"
+            android:paddingRight="25dp"/>
+        <Spinner
+            android:id="@+id/edit_text_dept"
+            android:entries="@array/contact_type"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
     <Button
         android:id="@+id/button_add_update_employee"
         android:layout_width="@dimen/button_width"

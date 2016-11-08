@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import cgt.SQLite.DatePickerFragment;
@@ -23,7 +24,6 @@ public class AddUpdateContacto extends AppCompatActivity implements DatePickerFr
     private static final String EXTRA_EMP_ID = "com.androidtutorialpoint.empId";
     private static final String EXTRA_ADD_UPDATE = "com.androidtutorialpoint.add_update";
     private static final String DIALOG_DATE = "DialogDate";
-    //private ImageView calendarImage;
     private RadioGroup radioGroup;
     private RadioButton maleRadioButton,femaleRadioButton;
     private EditText nameEditText;
@@ -31,8 +31,7 @@ public class AddUpdateContacto extends AppCompatActivity implements DatePickerFr
     private EditText phoneEditText;
     private EditText emailEditText;
     private EditText pasEditText;
-    private EditText deptEditText;
-    //private EditText hireDateEditText;
+    private Spinner deptEditText;
     private Button addUpdateButton;
     private Contacto newContacto;
     private Contacto oldContacto;
@@ -50,8 +49,8 @@ public class AddUpdateContacto extends AppCompatActivity implements DatePickerFr
         urlEditText = (EditText)findViewById(R.id.edit_text_url);
         phoneEditText = (EditText)findViewById(R.id.edit_text_phone);
         emailEditText = (EditText)findViewById(R.id.edit_text_email);
-        pasEditText = (EditText)findViewById(R.id.edit_text_pas);        
-        deptEditText = (EditText)findViewById(R.id.edit_text_dept);
+        pasEditText = (EditText)findViewById(R.id.edit_text_pas);
+        deptEditText = (Spinner)findViewById(R.id.edit_text_dept);
         addUpdateButton = (Button)findViewById(R.id.button_add_update_employee);
         ContactoData = new ContactoOperators(this);
         ContactoData.open();
@@ -78,7 +77,8 @@ public class AddUpdateContacto extends AppCompatActivity implements DatePickerFr
                     newContacto.setTelefono(Integer.parseInt(phoneEditText.getText().toString()));
                     newContacto.setEmail(emailEditText.getText().toString());
                     newContacto.setProductosYServicios(pasEditText.getText().toString());
-                    newContacto.setDepartamento(deptEditText.getText().toString());
+                    //newContacto.setDepartamento(deptEditText.getText().toString());
+                    newContacto.setDepartamento(deptEditText.getSelectedItemPosition());
                     ContactoData.addContacto(newContacto);
                     Toast t = Toast.makeText(AddUpdateContacto.this, "El contacto "+ newContacto.getNombre() + " ha sido agregado exitosamente", Toast.LENGTH_SHORT);
                     t.show();
@@ -90,7 +90,7 @@ public class AddUpdateContacto extends AppCompatActivity implements DatePickerFr
                     oldContacto.setTelefono(Integer.parseInt(phoneEditText.getText().toString()));
                     oldContacto.setEmail(emailEditText.getText().toString());
                     oldContacto.setProductosYServicios(pasEditText.getText().toString());
-                    oldContacto.setDepartamento(deptEditText.getText().toString());
+                    oldContacto.setDepartamento(deptEditText.getSelectedItemPosition());
                     ContactoData.updateContacto(oldContacto);
                     Toast t = Toast.makeText(AddUpdateContacto.this, "El contacto "+ oldContacto.getNombre() + " ha sido actualizado exitosamente", Toast.LENGTH_SHORT);
                     t.show();
@@ -113,7 +113,7 @@ public class AddUpdateContacto extends AppCompatActivity implements DatePickerFr
         phoneEditText.setText(Integer.toString(oldContacto.getTelefono()));
         emailEditText.setText(oldContacto.getEmail());
         pasEditText.setText(oldContacto.getProductosYServicios());
-        deptEditText.setText(oldContacto.getDepartamento());
+        deptEditText.setSelection(oldContacto.getDepartamento());
     }
 
 
