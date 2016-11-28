@@ -18,6 +18,9 @@ import java.net.URL;
 public class MainActivity extends AppCompatActivity {
 
     EditText cuadranteText;
+    EditText numContactoText;
+    EditText deptText;
+    EditText estText;
     TextView responseView;
     ProgressBar progressBar;
     //static final String API_KEY = "USE_YOUR_OWN_API_KEY";
@@ -28,9 +31,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        responseView = (TextView) findViewById(R.id.responseView);
         cuadranteText = (EditText) findViewById(R.id.cuadranteText);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        numContactoText = (EditText) findViewById(R.id.numContactoText);
+        deptText = (EditText) findViewById(R.id.deptText);
+        estText = (EditText) findViewById(R.id.estText);
 
         Button queryButton = (Button) findViewById(R.id.queryButton);
         queryButton.setOnClickListener(new View.OnClickListener() {
@@ -44,20 +48,34 @@ public class MainActivity extends AppCompatActivity {
     class RetrieveFeedTask extends AsyncTask<Void, Void, String> {
 
         private Exception exception;
-        String cuadrante = null;
+        String cuadrante, numeroContacto, departamento, estacion;
 
         protected void onPreExecute() {
+            setContentView(R.layout.activity_resultados);
+            responseView = (TextView) findViewById(R.id.responseView);
+            progressBar = (ProgressBar) findViewById(R.id.progressBar);
             progressBar.setVisibility(View.VISIBLE);
             responseView.setText("");
             cuadrante = cuadranteText.getText().toString();
+            numeroContacto = numContactoText.getText().toString();
+            departamento = deptText.getText().toString();
+            estacion = estText.getText().toString();
         }
 
         protected String doInBackground(Void... urls) {
             // Do some validation here
 
             try {
+                String parametros[] = {"","","",""};
+
+                if(cuadrante.length() > 0) parametros[0] = "cuadrante=" + cuadrante + "&";
+                if(numeroContacto.length() > 0) parametros[0] = "numerodecontacto=" + numeroContacto + "&";
+                if(estacion.length() > 0) parametros[0] = "estacion=" + estacion + "&";
+                if(departamento.length() > 0) parametros[0] = "departamento=" + departamento + "&";
+
                 //URL url = new URL(API_URL + "cuadrante=" + cuadrante + "&apiKey=" + API_KEY);
-                URL url = new URL(API_URL + "cuadrante=" + cuadrante);
+                URL url = new URL(API_URL + parametros[0] + parametros[1] + parametros[2] + parametros[3]);
+                System.out.println(API_URL + parametros[0] + parametros[1] + parametros[2] + parametros[3]);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 try {
                     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
