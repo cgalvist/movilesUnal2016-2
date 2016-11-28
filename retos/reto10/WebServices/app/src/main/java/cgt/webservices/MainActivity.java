@@ -36,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
         deptText = (EditText) findViewById(R.id.deptText);
         estText = (EditText) findViewById(R.id.estText);
 
+        responseView = (TextView) findViewById(R.id.responseView);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
         Button queryButton = (Button) findViewById(R.id.queryButton);
         queryButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,9 +54,6 @@ public class MainActivity extends AppCompatActivity {
         String cuadrante, numeroContacto, departamento, estacion;
 
         protected void onPreExecute() {
-            setContentView(R.layout.activity_resultados);
-            responseView = (TextView) findViewById(R.id.responseView);
-            progressBar = (ProgressBar) findViewById(R.id.progressBar);
             progressBar.setVisibility(View.VISIBLE);
             responseView.setText("");
             cuadrante = cuadranteText.getText().toString();
@@ -69,9 +69,9 @@ public class MainActivity extends AppCompatActivity {
                 String parametros[] = {"","","",""};
 
                 if(cuadrante.length() > 0) parametros[0] = "cuadrante=" + cuadrante + "&";
-                if(numeroContacto.length() > 0) parametros[0] = "numerodecontacto=" + numeroContacto + "&";
-                if(estacion.length() > 0) parametros[0] = "estacion=" + estacion + "&";
-                if(departamento.length() > 0) parametros[0] = "departamento=" + departamento + "&";
+                if(numeroContacto.length() > 0) parametros[1] = "numerodecontacto=" + numeroContacto + "&";
+                if(estacion.length() > 0) parametros[2] = "estacion=" + estacion + "&";
+                if(departamento.length() > 0) parametros[3] = "departamento=" + departamento + "&";
 
                 //URL url = new URL(API_URL + "cuadrante=" + cuadrante + "&apiKey=" + API_KEY);
                 URL url = new URL(API_URL + parametros[0] + parametros[1] + parametros[2] + parametros[3]);
